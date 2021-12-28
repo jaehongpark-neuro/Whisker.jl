@@ -41,7 +41,7 @@ myhandles.wt.whiskers[1].scores
 
 using GLMakie
 include("c:\\Users\\hongs\\Desktop\\VScode_Julia\\USV.jl\\usv_temp.jl")
-
+include("c:\\Users\\hongs\\Desktop\\VScode_Julia\\Whisker.jl\\src\\setpoint.jl")
 
 fig = Figure()
 
@@ -49,10 +49,4 @@ ax = Axis(fig[1,1])
 
 image!(ax,reverse(rotr90(myhandles.current_frame),dims=1))
 
-
-for i in 1:length(myhandles.wt.whiskers)
-    x = -myhandles.wt.whiskers[i].x .+640
-    y = -myhandles.wt.whiskers[i].y .+480
-    point = update_points(x,y)
-    lines!(ax,point,color=:cyan,linewidth=3)
-end
+draw_raw_all_whiskers!(ax,myhandles)
